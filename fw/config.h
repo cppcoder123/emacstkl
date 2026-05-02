@@ -39,7 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 
-#if 0
+#if UNDEFINED_VARIABLE_X
 
 
 #undef TAPPING_TERM
@@ -111,5 +111,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_MATRIX_STARTUP_SAT 255
 #define RGB_MATRIX_STARTUP_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS
 // #define RGB_MATRIX_STARTUP_SPD
+
+#endif
 
 #endif

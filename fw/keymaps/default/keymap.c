@@ -36,6 +36,137 @@ enum custom_keycodes  {
   MACRO_SHIFT_INSERT,		/* for terminal */
 };
 
+/*
+ * Column 0:
+ * KC_ESC,
+ * KC_GRV,
+ * KC_TAB,
+ * KC_CAPS,
+ * KC_LSFT,
+ * KC_LCTL,
+ *
+ * Column 1:
+ *
+ * KC_1,
+ * KC_Q,
+ * KC_A,
+ *
+ * KC_LGUI,
+ *
+ * Column 2:
+ * KC_F1,
+ * KC_2,
+ * KC_W,
+ * KC_S,
+ * KC_Z,
+ * KC_LALT,
+ *
+ * Column 3:
+ * KC_F2,
+ * KC_3,
+ * KC_E,
+ * KC_D,
+ * KC_X,
+ *
+ * Column 4:
+ * KC_F3,
+ * KC_4,
+ * KC_R,
+ * KC_F,
+ * KC_C,
+ *
+ * Column 5:
+ * KC_F4,
+ * KC_5,
+ * KC_T,
+ * KC_G,
+ * KC_V,
+ *
+ * Column 6:
+ * KC_F5,
+ * KC_6,
+ * KC_Y,
+ * KC_H,
+ * KC_B,
+ * KC_SPC,
+ *
+ * Column 7:
+ * KC_F6,
+ * KC_7,
+ * KC_U,
+ * KC_J,
+ * KC_N,
+ *
+ * Column 8:
+ * KC_F7,
+ * KC_8,
+ * KC_I,
+ * KC_K,
+ * KC_M,
+ *
+ *
+ * Column 9:
+ * KC_F8,
+ * KC_9,
+ * KC_O,
+ * KC_L,
+ * KC_COMM,
+ * KC_RALT,
+ *
+ * Column 10:
+ * KC_F9,
+ * KC_0,
+ * KC_P,
+ * KC_SCLN,
+ * KC_DOT,
+ * KC_RGUI,
+ *
+ * Column 11:
+ * KC_F10,
+ * KC_MIN
+ * KC_LBR
+ * KC_QUO
+ * KC_SLS
+ * MO(1),
+ *
+ * Column 12:
+ * KC_F11,
+ * KC_EQL
+ * KC_RBR
+ * KC_ENT
+ * KC_RSF
+ * C_RCTL,
+ *
+ * Column 13:
+ * KC_F12,
+ * KC_BSPC,
+ * KC_BSLS,
+ *
+ * Column 14:
+  *KC_PSCR,
+ * KC_INS,
+ * KC_DEL,
+ *
+ *KC_LEFT,
+ *
+ * Column 15:
+ * KC_SCRL
+ * KC_HOM
+ * KC_END
+ *
+ * KC_UP,
+ * KC_DOWN,
+ *
+ * Column 16:
+ * KC_PAUS
+ * KC_PGU
+ * KC_PGD
+ *
+ * KC_RIGHT
+ *
+ *
+ */
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_tkl_ansi
   (
@@ -70,7 +201,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
-  if (!record->even.pressed)
+  if (!record->event.pressed)
     return true;
 
   switch (keycode) {
@@ -118,8 +249,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     break;
   case MACRO_SHIFT_INSERT:
     SEND_STRING (SS_LSFT (SS_TAP (X_INS)));
-    break;
-  case MACRO_:
     break;
   }
 
