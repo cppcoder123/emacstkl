@@ -99,34 +99,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
   switch (keycode) {
   case MACRO_BUFFER_0:
-    SEND_STRING(SS_LCTL(SS_TAP(X_X)) SS_TAP(X_0));
+    SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_TAP (X_0));
     break;
   case MACRO_BUFFER_1:
-    SEND_STRING(SS_LCTL(SS_TAP(X_X)) SS_TAP(X_1));
+    SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_TAP (X_1));
     break;
   case MACRO_BUFFER_2:
-    SEND_STRING(SS_LCTL(SS_TAP(X_X)) SS_TAP(X_2));
+    SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_TAP (X_2));
     break;
   case MACRO_BUFFER_3:
-    SEND_STRING(SS_LCTL(SS_TAP(X_X)) SS_TAP(X_3));
+    SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_TAP (X_3));
     break;
   case MACRO_BUFFER_SWITCH:
-    SEND_STRING(SS_LCTL(SS_TAP(X_X)) SS_TAP(X_B));
+    SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_TAP (X_B));
     break;
   case MACRO_COMPILE:
-    SEND_STRING(SS_LALT(SS_TAP(X_X)) "compile" SS_TAP(X_ENTER));
+    SEND_STRING (SS_LALT (SS_TAP (X_X)) "compile" SS_TAP (X_ENTER));
     break;
   case MACRO_COMPILE_AGAIN:
-    SEND_STRING(SS_LALT(SS_TAP(X_X)) "recompile" SS_TAP(X_ENTER));
+    SEND_STRING (SS_LALT (SS_TAP (X_X)) "recompile" SS_TAP (X_ENTER));
     break;
   case MACRO_FILE_OPEN:
-    SEND_STRING(SS_LCTL(SS_TAP(X_X)) SS_LCTL(SS_TAP(X_F)));
+    SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_LCTL (SS_TAP (X_F)));
     break;
   case MACRO_FILE_SAVE:
-    SEND_STRING(SS_LCTL(SS_TAP(X_X)) SS_LCTL(SS_TAP(X_S)));
+    SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_LCTL (SS_TAP (X_S)));
     break;
   case MACRO_MAGIT:
-    SEND_STRING(SS_LALT(SS_TAP(X_X)) "magit" SS_TAP(X_ENTER));
+    SEND_STRING (SS_LALT (SS_TAP (X_X)) "magit" SS_TAP (X_ENTER));
     break;
   case MACRO_MAKE:
     SEND_STRING ("make");
