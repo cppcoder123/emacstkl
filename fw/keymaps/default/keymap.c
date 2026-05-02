@@ -54,8 +54,11 @@ enum custom_keycodes  {
 
 */
 
+#define EMACSTKL_LAYER_0 0
+#define EMACSTKL_LAYER_1 1
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [0] = LAYOUT_tkl_ansi
+  [EMACSTKL_LAYER_0] = LAYOUT_tkl_ansi
   (
    KC_ESC, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9,
      KC_F10, KC_F11, KC_F12, KC_PSCR, KC_SCRL, KC_PAUS,
@@ -70,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_LCTL, KC_RGUI, KC_LALT, KC_SPC, KC_RALT, KC_LGUI, KC_CAPS, KC_RCTL,
      KC_LEFT, KC_DOWN, KC_RIGHT),
 
-  [1] = LAYOUT_tkl_ansi
+  [EMACSTKL_LAYER_1] = LAYOUT_tkl_ansi
   (
    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
      KC_NO, KC_NO, KC_NO, QK_BOOT, KC_NO,
@@ -156,7 +159,7 @@ void keyboard_pre_init_user ()
 
 layer_state_t layer_state_set_user(layer_state_t state)
 {
-  if (IS_LAYER_ON_STATE(state, 1))
+  if (IS_LAYER_ON_STATE(state, EMACSTKL_LAYER_1))
     writePinHigh (C0);
   else
     writePinLow (C0);
