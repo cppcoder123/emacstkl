@@ -73,6 +73,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_LCTL, KC_RGUI, KC_LALT, KC_SPC, KC_RALT, KC_LGUI, KC_CAPS, KC_RCTL,
      KC_LEFT, KC_DOWN, KC_RIGHT),
 
+  /*
+   * C - left: Caps Lock, right/middle: Ctrl
+   *
+   * C-` C-x 0
+   * C-1 C-x 1
+   * C-2 C-x 2
+   * C-3 C-x 3
+   * C-c M-x "compile"
+   * C-r M-x "recompile"
+   * C-o C-x C-f
+   * C-s C-x C-s
+   * C-g M-x "magit"
+   * C-m "make"       ; terminal
+   * C-j "make -j "   ; terminal
+   * C-l "make clean" ; terminal
+   * C-e C-x `        ; next-error
+   * C-h              ; shift-insert for terminal
+   *
+   */
   [EMACSTKL_LAYER_1] = LAYOUT_tkl_ansi
   (
    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
@@ -83,8 +102,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_NO, KC_NO, KC_NO, MACRO_NEXT_ERROR, MACRO_COMPILE_AGAIN,
      KC_NO, KC_NO, KC_NO, KC_NO, MACRO_FILE_OPEN, KC_NO, KC_NO,
      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-   KC_NO, KC_NO, MACRO_FILE_SAVE, KC_NO, KC_NO, KC_NO, MACRO_MAGIT,
-     MACRO_SHIFT_INSERT/*s is taken, h*/, MACRO_MAKE_J,
+   KC_NO, KC_NO, MACRO_FILE_SAVE, KC_NO, KC_NO, MACRO_MAGIT,
+     MACRO_SHIFT_INSERT/*s is taken, h*/, MACRO_MAKE_J, KC_NO,
      MACRO_MAKE_CLEAN/*c is taken, l*/, KC_NO, KC_NO, KC_NO,
    KC_NO, KC_NO, KC_NO, MACRO_COMPILE, KC_NO, MACRO_BUFFER_SWITCH,
      KC_NO, MACRO_MAKE, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
