@@ -31,9 +31,9 @@ enum custom_keycodes  {
   MACRO_MAGIT,
   MACRO_MAKE,
   MACRO_MAKE_CLEAN,
-  MACRO_MAKE_J,			/* parallel make*/
+  MACRO_MAKE_J,                 /* parallel make*/
   MACRO_NEXT_ERROR,
-  MACRO_SHIFT_INSERT,		/* for terminal */
+  MACRO_SHIFT_INSERT,           /* for terminal */
 };
 
 /*
