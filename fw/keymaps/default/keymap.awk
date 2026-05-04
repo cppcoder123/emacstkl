@@ -15,7 +15,8 @@
   # C-e C-x `        ; next-error
   # C-h              ; shift-insert for terminal
 
-function replace (ar_src, ar_dst, src, dst)
+# add dst to arr-dst using index derived by src in ar_src search
+function add (ar_src, ar_dst, src, dst)
 {
     for (i = 1; i < length (ar_src); i++) {
         if (ar_src[i] == src) {
@@ -71,27 +72,27 @@ BEGIN {
     # make an array
     split (tmp, layer_0, "(,)|(, )|(,\n)")
 
-    # 2. create empty layer 1
+    # create empty layer 1
     for (i = 1; i <= length (layer_0); i++)
         layer_1[i] = "KC_NO";
 
-    # 3. fill layer 1
-    replace(layer_0, layer_1, "KC_SCRL", "QK_BOOT")
+    # fill layer 1
+    add(layer_0, layer_1, "KC_SCRL", "QK_BOOT")
     #
-    replace(layer_0, layer_1, "KC_GRV", "MACRO_BUFFER_0")
-    replace(layer_0, layer_1, "KC_1", "MACRO_BUFFER_1")
-    replace(layer_0, layer_1, "KC_2", "MACRO_BUFFER_2")
-    replace(layer_0, layer_1, "KC_3", "MACRO_BUFFER_3")
-    replace(layer_0, layer_1, "KC_C", "MACRO_COMPILE")
-    replace(layer_0, layer_1, "KC_R", "MACRO_COMPILE_AGAIN")
-    replace(layer_0, layer_1, "KC_O", "MACRO_FILE_OPEN")
-    replace(layer_0, layer_1, "KC_S", "MACRO_FILE_SAVE")
-    replace(layer_0, layer_1, "KC_G", "MACRO_MAGIT")
-    replace(layer_0, layer_1, "KC_M", "MACRO_MAKE")
-    replace(layer_0, layer_1, "KC_J", "MACRO_MAKE_J")
-    replace(layer_0, layer_1, "KC_L", "MACRO_MAKE_CLEAN")
-    replace(layer_0, layer_1, "KC_E", "MACRO_NEXT_ERROR")
-    replace(layer_0, layer_1, "KC_H", "MACRO_SHIFT_INSERT")
+    add(layer_0, layer_1, "KC_GRV", "MACRO_BUFFER_0")
+    add(layer_0, layer_1, "KC_1", "MACRO_BUFFER_1")
+    add(layer_0, layer_1, "KC_2", "MACRO_BUFFER_2")
+    add(layer_0, layer_1, "KC_3", "MACRO_BUFFER_3")
+    add(layer_0, layer_1, "KC_C", "MACRO_COMPILE")
+    add(layer_0, layer_1, "KC_R", "MACRO_COMPILE_AGAIN")
+    add(layer_0, layer_1, "KC_O", "MACRO_FILE_OPEN")
+    add(layer_0, layer_1, "KC_S", "MACRO_FILE_SAVE")
+    add(layer_0, layer_1, "KC_G", "MACRO_MAGIT")
+    add(layer_0, layer_1, "KC_M", "MACRO_MAKE")
+    add(layer_0, layer_1, "KC_J", "MACRO_MAKE_J")
+    add(layer_0, layer_1, "KC_L", "MACRO_MAKE_CLEAN")
+    add(layer_0, layer_1, "KC_E", "MACRO_NEXT_ERROR")
+    add(layer_0, layer_1, "KC_H", "MACRO_SHIFT_INSERT")
 
     define_layer("EMACSTKL_INFO_0", layer_0)
     define_layer("EMACSTKL_INFO_1", layer_1)
