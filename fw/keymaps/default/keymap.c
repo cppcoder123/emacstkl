@@ -26,6 +26,8 @@ enum custom_keycodes  {
   MACRO_COMPILE,
   MACRO_COMPILE_AGAIN,
   /**/
+  MACRO_CTL_ALT_DEL,		/* for M$ */
+  /**/
   MACRO_FILE_OPEN,
   MACRO_FILE_SAVE,
   MACRO_MAGIT,
