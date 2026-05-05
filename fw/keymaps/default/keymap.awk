@@ -14,11 +14,12 @@
 # C-l "make clean" ; terminal
 # C-e C-x `        ; next-error
 # C-h              ; shift-insert for terminal
+# ...
 
 # add dst to arr-dst using index derived by src in ar_src search
 function map (ar_src, ar_dst, src, dst)
 {
-    for (i = 1; i < length (ar_src); i++) {
+    for (i = 1; i <= length (ar_src); i++) {
         if (ar_src[i] == src) {
             ar_dst[i] = dst;
             break;
@@ -53,7 +54,6 @@ function print_map (layer_a, layer_b)
 }
 
 BEGIN {
-    # swap win buttons, FN as Caps-Lock
     src =                                                               \
         "KC_ESC, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8," \
         "KC_F9, KC_F10, KC_F11, KC_F12, KC_PSCR, KC_SCRL, KC_PAUS,"     \
@@ -61,12 +61,12 @@ BEGIN {
         "KC_MINS, KC_EQL, KC_BSPC, KC_INS, KC_HOME, KC_PGUP,"           \
         "KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P," \
         "KC_LBRC, KC_RBRC, KC_BSLS, KC_DEL, KC_END, KC_PGDN,"           \
-        "LT(EMACSTKL_LAYER_1|KC_CAPS), KC_A, KC_S, KC_D, KC_F, KC_G, KC_H," \
-        "KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT, KC_ENT,"                   \
+        "KC_CAPS, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L," \
+	"KC_SCLN, KC_QUOT, KC_ENT,"					\
         "KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT," \
         "KC_SLSH, KC_RSFT, KC_UP,"                                      \
-        "KC_LCTL, KC_RGUI, KC_LALT, KC_SPC, KC_RALT, KC_LGUI, KC_CAPS,"	\
-	" KC_RCTL, KC_LEFT, KC_DOWN, KC_RIGHT"
+        "KC_LCTL, KC_LGUI, KC_LALT, KC_SPC, KC_RALT, KC_RGUI, KC_F20,"	\
+	"KC_RCTL, KC_LEFT, KC_DOWN, KC_RIGHT"
 
     # replace comma in braces with '|'
     #tmp = gensub (/(\([^ ,]+)[ ]*,[ ]*([^)]+\))/, "\\1|\\2", "g", src)
@@ -78,9 +78,14 @@ BEGIN {
         layer_1[i] = "KC_NO";
 
     # fill layer 1
-    map(layer_0, layer_1, "LT(EMACSTKL_LAYER_1|KC_CAPS)", "KC_TRNS")
+    map(layer_0, layer_1, "KC_CAPS", "KC_TRNS")
     map(layer_0, layer_1, "KC_SCRL", "QK_BOOT")
     #
+    map(layer_0, layer_1, "KC_ESC", "MACRO_WIN_JUMP")
+    map(layer_0, layer_1, "KC_F1", "MACRO_WIN_1")
+    map(layer_0, layer_1, "KC_F2", "MACRO_WIN_2")
+    map(layer_0, layer_1, "KC_F3", "MACRO_WIN_3")
+    map(layer_0, layer_1, "KC_F4", "MACRO_WIN_4")
     map(layer_0, layer_1, "KC_GRV", "MACRO_BUFFER_0")
     map(layer_0, layer_1, "KC_1", "MACRO_BUFFER_1")
     map(layer_0, layer_1, "KC_2", "MACRO_BUFFER_2")
@@ -95,7 +100,21 @@ BEGIN {
     map(layer_0, layer_1, "KC_L", "MACRO_MAKE_CLEAN")
     map(layer_0, layer_1, "KC_E", "MACRO_NEXT_ERROR")
     map(layer_0, layer_1, "KC_H", "MACRO_SHIFT_INSERT")
+    map(layer_0, layer_1, "KC_UP", "MACRO_TMUX_FOCUS_UP")
+    map(layer_0, layer_1, "KC_DOWN", "MACRO_TMUX_FOCUS_DOWN")
+    map(layer_0, layer_1, "KC_UP", "MACRO_TMUX_FOCUS_UP")
+    map(layer_0, layer_1, "KC_LEFT", "MACRO_TMUX_FOCUS_PREV")
+    map(layer_0, layer_1, "KC_RIGHT", "MACRO_TMUX_FOCUS_NEXT")
+    map(layer_0, layer_1, "KC_N", "MACRO_TMUX_NEW")
+    map(layer_0, layer_1, "KC_P", "MACRO_TMUX_SPLIT_H")
 
+    # update layer 0
+    map(layer_0, layer_0, "KC_CAPS", "LT(EMACSTKL_LAYER_1|KC_CAPS)")
+    # rgui further then lgui, swap
+    map(layer_0, layer_0, "KC_RGUI", "KC_LGUI")
+    map(layer_0, layer_0, "KC_LGUI", "KC_RGUI")
+
+    # write needed defines
     define_layer("EMACSTKL_INFO_0", layer_0)
     define_layer("EMACSTKL_INFO_1", layer_1)
     #

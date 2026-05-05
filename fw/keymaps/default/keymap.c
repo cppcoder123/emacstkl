@@ -34,6 +34,17 @@ enum custom_keycodes  {
   MACRO_MAKE_J,                 /* parallel make*/
   MACRO_NEXT_ERROR,
   MACRO_SHIFT_INSERT,           /* for terminal */
+  MACRO_TMUX_FOCUS_DOWN,	/* from here and down : not implemented fixme*/
+  MACRO_TMUX_FOCUS_UP,
+  MACRO_TMUX_FOCUS_PREV,
+  MACRO_TMUX_FOCUS_NEXT,
+  MACRO_TMUX_NEW,
+  MACRO_TMUX_SPLIT_H,
+  MACRO_WIN_1,			/* change focus to win 1 */
+  MACRO_WIN_2,			/* focus to win 2 */
+  MACRO_WIN_3,			/* focus to win 3 */
+  MACRO_WIN_4,			/* focus to win 4 */
+  MACRO_WIN_JUMP,		/* focus to other window */
 };
 
 /*
@@ -56,6 +67,8 @@ enum custom_keycodes  {
 
 #define EMACSTKL_LAYER_0 0
 #define EMACSTKL_LAYER_1 1
+/**/
+#define EMACSTKL_LAYER_1_LED C0
 
 #include "keymap-info.h"
 
@@ -122,7 +135,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
 void keyboard_pre_init_user ()
 {
-  setPinOutput (C0);
+  gpio_set_pin_output (EMACSTKL_LAYER_1_LED);
   /*
     setPinOutput (C1);
     setPinOutput (B6);
@@ -132,9 +145,9 @@ void keyboard_pre_init_user ()
 layer_state_t layer_state_set_user(layer_state_t state)
 {
   if (IS_LAYER_ON_STATE (state, EMACSTKL_LAYER_1))
-    writePinHigh (C0);
+    gpio_write_pin_high (EMACSTKL_LAYER_1_LED);
   else
-    writePinLow (C0);
+    gpio_write_pin_low (EMACSTKL_LAYER_1_LED);
 
   return state;
 }
