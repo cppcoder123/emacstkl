@@ -27,16 +27,16 @@ function map (ar_src, ar_dst, src, dst)
     }
 }
 
-function unwrap_comma (src)
-{
-    return gensub ("\\|", ",", 1, src)
-}
+#function unwrap_comma (src)
+#{
+#    return gensub ("\\|", ",", 1, src)
+#}
 
 function define_layer (layer_id, layer_info)
 {
     print "#define " layer_id " LAYOUT_tkl_ansi( \\"
     for (i = 1; i <= length (layer_info); i++) {
-        info = unwrap_comma(layer_info[i])
+        info = layer_info[i]
         if (i < length (layer_info))
             print "  " info ", \\"
         else
@@ -48,7 +48,7 @@ function print_map (layer_a, layer_b)
 {
     print "/*"
     for (i = 1; i <= length (layer_a); i++) {
-        print "  " unwrap_comma(layer_a[i]) " -> " unwrap_comma(layer_b[i])
+        print "  " layer_a[i] " -> " layer_b[i]
     }
     print "*/"
 }
@@ -109,7 +109,7 @@ BEGIN {
     map(layer_0, layer_1, "KC_UP", "MACRO_TMUX_FOCUS_UP")
 
     # update layer 0
-    map(layer_0, layer_0, "KC_CAPS", "LT(EMACSTKL_LAYER_1|KC_CAPS)")
+    map(layer_0, layer_0, "KC_CAPS", "LT(EMACSTKL_LAYER_1,KC_CAPS)")
     # rgui further then lgui, swap
     map(layer_0, layer_0, "KC_RGUI", "KC_LGUI")
     map(layer_0, layer_0, "KC_LGUI", "KC_RGUI")

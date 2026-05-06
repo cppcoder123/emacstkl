@@ -36,13 +36,13 @@ enum custom_keycodes  {
   MACRO_MAKE_J,                 /* parallel make*/
   MACRO_NEXT_ERROR,
   MACRO_SHIFT_INSERT,           /* for terminal */
-  MACRO_TMUX_FOCUS_DOWN,	/* from here and down : not implemented fixme*/
-  MACRO_TMUX_FOCUS_UP,
-  MACRO_TMUX_FOCUS_PREV,
+  MACRO_TMUX_FOCUS_DOWN,	/* */
   MACRO_TMUX_FOCUS_NEXT,
+  MACRO_TMUX_FOCUS_PREV,
+  MACRO_TMUX_FOCUS_UP,
   MACRO_TMUX_NEW,
   MACRO_TMUX_SPLIT_H,
-  MACRO_WIN_1,			/* change focus to win 1 */
+  MACRO_WIN_1,			/* ace-window: change focus to win 1 */
   MACRO_WIN_2,			/* focus to win 2 */
   MACRO_WIN_3,			/* focus to win 3 */
   MACRO_WIN_4,			/* focus to win 4 */
@@ -59,11 +59,11 @@ enum custom_keycodes  {
   KC_LCTL, KC_LGUI, KC_LALT,                          KC_SPC,
 
   KC_F8,   KC_F9,   KC_F10,   KC_F11,  KC_F12,   KC_PSCR,  KC_SCRL, KC_PAUS,
-   KC_9,    KC_0,    KC_MINS,  KC_EQL,  KC_BSPC,  KC_INS,   KC_HOME, KC_PGUP,
-   KC_O,    KC_P,    KC_LBRC,  KC_RBRC, KC_BSLS,  KC_DEL,   KC_END,  KC_PGDN,
-   KC_L,    KC_SCLN, KC_QUOT,  KC_ENT,
-   KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,                     KC_UP,
-   KC_RALT, KC_RGUI, MO(1),  KC_RCTL,            KC_LEFT, KC_DOWN, KC_RIGHT),
+  KC_9,    KC_0,    KC_MINS,  KC_EQL,  KC_BSPC,  KC_INS,   KC_HOME, KC_PGUP,
+  KC_O,    KC_P,    KC_LBRC,  KC_RBRC, KC_BSLS,  KC_DEL,   KC_END,  KC_PGDN,
+  KC_L,    KC_SCLN, KC_QUOT,  KC_ENT,
+  KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,                     KC_UP,
+  KC_RALT, KC_RGUI, MO(1),  KC_RCTL,            KC_LEFT, KC_DOWN, KC_RIGHT),
 
 */
 
@@ -87,48 +87,107 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
   switch (keycode) {
   case MACRO_BUFFER_0:
     SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_TAP (X_0));
+    return false;
     break;
   case MACRO_BUFFER_1:
     SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_TAP (X_1));
+    return false;
     break;
   case MACRO_BUFFER_2:
     SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_TAP (X_2));
+    return false;
     break;
   case MACRO_BUFFER_3:
     SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_TAP (X_3));
+    return false;
     break;
   case MACRO_BUFFER_SWITCH:
     SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_TAP (X_B));
+    return false;
     break;
   case MACRO_COMPILE:
     SEND_STRING (SS_LALT (SS_TAP (X_X)) "compile" SS_TAP (X_ENTER));
+    return false;
     break;
   case MACRO_COMPILE_AGAIN:
     SEND_STRING (SS_LALT (SS_TAP (X_X)) "recompile" SS_TAP (X_ENTER));
+    return false;
     break;
   case MACRO_FILE_OPEN:
     SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_LCTL (SS_TAP (X_F)));
+    return false;
     break;
   case MACRO_FILE_SAVE:
     SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_LCTL (SS_TAP (X_S)));
+    return false;
     break;
   case MACRO_MAGIT:
     SEND_STRING (SS_LALT (SS_TAP (X_X)) "magit" SS_TAP (X_ENTER));
+    return false;
     break;
   case MACRO_MAKE:
     SEND_STRING ("make");
+    return false;
     break;
   case MACRO_MAKE_CLEAN:
     SEND_STRING ("make clean");
+    return false;
     break;
   case MACRO_MAKE_J:
     SEND_STRING ("make -j ");
+    return false;
     break;
   case MACRO_NEXT_ERROR:
     SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_TAP (X_GRV));
+    return false;
     break;
   case MACRO_SHIFT_INSERT:
     SEND_STRING (SS_LSFT (SS_TAP (X_INS)));
+    return false;
+    break;
+  case MACRO_TMUX_FOCUS_DOWN:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_DOWN));
+    return false;
+    break;
+  case MACRO_TMUX_FOCUS_NEXT:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_RIGHT));
+    return false;
+    break;
+  case MACRO_TMUX_FOCUS_PREV:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_LEFT));
+    return false;
+    break;
+  case MACRO_TMUX_FOCUS_UP:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_UP));
+    return false;
+    break;
+  case MACRO_TMUX_NEW:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_C));
+    return false;
+    break;
+  case MACRO_TMUX_SPLIT_H:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_QUOT));
+    return false;
+    break;
+  case MACRO_WIN_1:
+    SEND_STRING (SS_LALT (SS_TAP (X_O)) SS_TAP (X_1));
+    return false;
+    break;
+  case MACRO_WIN_2:
+    SEND_STRING (SS_LALT (SS_TAP (X_O)) SS_TAP (X_2));
+    return false;
+    break;
+  case MACRO_WIN_3:
+    SEND_STRING (SS_LALT (SS_TAP (X_O)) SS_TAP (X_3));
+    return false;
+    break;
+  case MACRO_WIN_4:
+    SEND_STRING (SS_LALT (SS_TAP (X_O)) SS_TAP (X_4));
+    return false;
+    break;
+  case MACRO_WIN_JUMP:
+    SEND_STRING (SS_LALT (SS_TAP (X_O)));
+    return false;
     break;
   }
 
