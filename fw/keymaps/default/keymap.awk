@@ -27,11 +27,6 @@ function map (ar_src, ar_dst, src, dst)
     }
 }
 
-#function unwrap_comma (src)
-#{
-#    return gensub ("\\|", ",", 1, src)
-#}
-
 function define_layer (layer_id, layer_info)
 {
     print "#define " layer_id " LAYOUT_tkl_ansi( \\"
