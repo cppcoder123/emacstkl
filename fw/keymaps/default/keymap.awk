@@ -77,9 +77,9 @@ BEGIN {
     }
 
     # fill layer 1
-    map(layer_0, layer_1, "KC_CAPS", "KC_TRNS")
-    map(layer_0, layer_2, "KC_LGUI", "KC_TRNS")
-    map(layer_0, layer_3, "KC_F20", "KC_TRNS")
+    map(layer_0, layer_1, "KC_CAPS", "KC_NO")
+    map(layer_0, layer_2, "KC_LGUI", "KC_NO")
+    map(layer_0, layer_3, "KC_F20", "KC_NO")
     #
     map(layer_0, layer_1, "KC_SCRL", "QK_BOOT")
     #

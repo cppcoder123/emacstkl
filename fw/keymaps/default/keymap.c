@@ -74,7 +74,7 @@ enum custom_keycodes  {
 /**/
 #define EMACSTKL_LAYER_1_LED C0
 #define EMACSTKL_LAYER_2_LED C1
-#define EMACSTKL_LAYER_3_LED B6
+#define EMACSTKL_LAYER_3_LED B5
 
 #include "keymap-info.h"
 
