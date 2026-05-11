@@ -69,11 +69,18 @@ BEGIN {
     split (src, layer_0, "(,)|(, )|(,\n)")
 
     # create empty layer 1
-    for (i = 1; i <= length (layer_0); i++)
+    for (i = 1; i <= length (layer_0); i++) {
         layer_1[i] = "KC_NO";
+        # to debug l2 & l3 leds
+        layer_2[i] = "KC_NO";
+        layer_3[i] = "KC_NO";
+    }
 
     # fill layer 1
     map(layer_0, layer_1, "KC_CAPS", "KC_TRNS")
+    map(layer_0, layer_2, "KC_LGUI", "KC_TRNS")
+    map(layer_0, layer_3, "KC_F20", "KC_TRNS")
+    #
     map(layer_0, layer_1, "KC_SCRL", "QK_BOOT")
     #
     map(layer_0, layer_1, "KC_1", "MACRO_BUFFER_1")
@@ -104,14 +111,21 @@ BEGIN {
     map(layer_0, layer_1, "KC_UP", "MACRO_TMUX_FOCUS_UP")
 
     # update layer 0
-    map(layer_0, layer_0, "KC_CAPS", "LT(EMACSTKL_LAYER_1,KC_CAPS)")
+    #map(layer_0, layer_0, "KC_CAPS", "LT(EMACSTKL_LAYER_1,KC_CAPS)")
+    map(layer_0, layer_0, "KC_CAPS", "OSL(EMACSTKL_LAYER_1)")
+    # debug l2/3 leds
+    map(layer_0, layer_0, "KC_LGUI", "OSL(EMACSTKL_LAYER_2)")
+    map(layer_0, layer_0, "KC_F20", "OSL(EMACSTKL_LAYER_3)")
     # rgui further then lgui, swap
     map(layer_0, layer_0, "KC_RGUI", "KC_LGUI")
-    map(layer_0, layer_0, "KC_LGUI", "KC_RGUI")
+    # original l-gui is a layer switcher
+    #map(layer_0, layer_0, "KC_LGUI", "KC_RGUI")
 
     # write needed defines
     define_layer("EMACSTKL_INFO_0", layer_0)
     define_layer("EMACSTKL_INFO_1", layer_1)
+    define_layer("EMACSTKL_INFO_2", layer_2)
+    define_layer("EMACSTKL_INFO_3", layer_3)
     #
     print_map(layer_0, layer_1)
 

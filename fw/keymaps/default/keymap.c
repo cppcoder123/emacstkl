@@ -69,14 +69,20 @@ enum custom_keycodes  {
 
 #define EMACSTKL_LAYER_0 0
 #define EMACSTKL_LAYER_1 1
+#define EMACSTKL_LAYER_2 2
+#define EMACSTKL_LAYER_3 3
 /**/
 #define EMACSTKL_LAYER_1_LED C0
+#define EMACSTKL_LAYER_2_LED C1
+#define EMACSTKL_LAYER_3_LED B6
 
 #include "keymap-info.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [EMACSTKL_LAYER_0] = EMACSTKL_INFO_0,
-  [EMACSTKL_LAYER_1] = EMACSTKL_INFO_1
+  [EMACSTKL_LAYER_1] = EMACSTKL_INFO_1,
+  [EMACSTKL_LAYER_2] = EMACSTKL_INFO_2,
+  [EMACSTKL_LAYER_3] = EMACSTKL_INFO_3
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
@@ -113,6 +119,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     SEND_STRING (SS_LALT (SS_TAP (X_X)) "recompile" SS_TAP (X_ENTER));
     return false;
     break;
+  case MACRO_CTL_ALT_DEL:
+      SEND_STRING (SS_LCTL(SS_LALT(SS_TAP (X_DELETE))));
+      return false;
+      break;
   case MACRO_FILE_OPEN:
     SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_LCTL (SS_TAP (X_F)));
     return false;
@@ -197,10 +207,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 void keyboard_pre_init_user ()
 {
   gpio_set_pin_output (EMACSTKL_LAYER_1_LED);
-  /*
-    setPinOutput (C1);
-    setPinOutput (B6);
-  */
+  gpio_set_pin_output (EMACSTKL_LAYER_2_LED);
+  gpio_set_pin_output (EMACSTKL_LAYER_3_LED);
 }
 
 layer_state_t layer_state_set_user(layer_state_t state)
@@ -209,6 +217,16 @@ layer_state_t layer_state_set_user(layer_state_t state)
     gpio_write_pin_high (EMACSTKL_LAYER_1_LED);
   else
     gpio_write_pin_low (EMACSTKL_LAYER_1_LED);
+
+  if (IS_LAYER_ON_STATE (state, EMACSTKL_LAYER_2))
+    gpio_write_pin_high (EMACSTKL_LAYER_2_LED);
+  else
+    gpio_write_pin_low (EMACSTKL_LAYER_2_LED);
+
+  if (IS_LAYER_ON_STATE (state, EMACSTKL_LAYER_3))
+    gpio_write_pin_high (EMACSTKL_LAYER_3_LED);
+  else
+    gpio_write_pin_low (EMACSTKL_LAYER_3_LED);
 
   return state;
 }
