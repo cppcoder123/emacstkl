@@ -109,6 +109,7 @@ BEGIN {
     map(layer_0, layer_1, "KC_RIGHT", "MACRO_TMUX_FOCUS_NEXT")
     map(layer_0, layer_1, "KC_S", "MACRO_FILE_SAVE")
     map(layer_0, layer_1, "KC_UP", "MACRO_TMUX_FOCUS_UP")
+    map(layer_0, layer_1, "KC_W", "MACRO_BUFFER_SWITCH")
 
     # update layer 0
     #map(layer_0, layer_0, "KC_CAPS", "LT(EMACSTKL_LAYER_1,KC_CAPS)")

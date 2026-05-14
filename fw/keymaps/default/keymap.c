@@ -160,11 +160,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     return false;
     break;
   case MACRO_TMUX_FOCUS_NEXT:
-    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_RIGHT));
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_N));
     return false;
     break;
   case MACRO_TMUX_FOCUS_PREV:
-    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_LEFT));
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_P));
     return false;
     break;
   case MACRO_TMUX_FOCUS_UP:
@@ -176,7 +176,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     return false;
     break;
   case MACRO_TMUX_SPLIT_H:
-    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_QUOT));
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_LSFT (SS_TAP (X_QUOT)));
     return false;
     break;
   case MACRO_WIN_1:
