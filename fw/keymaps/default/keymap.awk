@@ -86,6 +86,7 @@ BEGIN {
     map(layer_0, layer_1, "KC_1", "MACRO_BUFFER_1")
     map(layer_0, layer_1, "KC_2", "MACRO_BUFFER_2")
     map(layer_0, layer_1, "KC_3", "MACRO_BUFFER_3")
+    map(layer_0, layer_1, "KC_A", "MACRO_AVY_GOTO_CHAR_TIMER")
     map(layer_0, layer_1, "KC_C", "MACRO_COMPILE")
     map(layer_0, layer_1, "KC_DOWN", "MACRO_TMUX_FOCUS_DOWN")
     map(layer_0, layer_1, "KC_E", "MACRO_NEXT_ERROR")
@@ -111,11 +112,21 @@ BEGIN {
     map(layer_0, layer_1, "KC_UP", "MACRO_TMUX_FOCUS_UP")
     map(layer_0, layer_1, "KC_W", "MACRO_BUFFER_SWITCH")
 
+    # fill layer_2
+    map(layer_0, layer_2, "KC_F9", "QK_MOUSE_CURSOR_LEFT")
+    map(layer_0, layer_2, "KC_F10", "QK_MOUSE_CURSOR_UP")
+    map(layer_0, layer_2, "KC_F11", "QK_MOUSE_CURSOR_DOWN")
+    map(layer_0, layer_2, "KC_F12", "QK_MOUSE_CURSOR_RIGHT")
+    map(layer_0, layer_2, "KC_INS", "QK_MOUSE_WHEEL_UP")
+    map(layer_0, layer_2, "KC_DEL", "QK_MOUSE_WHEEL_DOWN")
+    map(layer_0, layer_2, "KC_BSPC", "QK_MOUSE_BUTTON_1")
+    map(layer_0, layer_2, "KC_EQL", "QK_MOUSE_BUTTON_2")
+
     # update layer 0
     #map(layer_0, layer_0, "KC_CAPS", "LT(EMACSTKL_LAYER_1,KC_CAPS)")
     map(layer_0, layer_0, "KC_CAPS", "OSL(EMACSTKL_LAYER_1)")
     # debug l2/3 leds
-    map(layer_0, layer_0, "KC_LGUI", "OSL(EMACSTKL_LAYER_2)")
+    map(layer_0, layer_0, "KC_LGUI", "MO(EMACSTKL_LAYER_2)")
     map(layer_0, layer_0, "KC_F20", "OSL(EMACSTKL_LAYER_3)")
     # rgui further then lgui, swap
     map(layer_0, layer_0, "KC_RGUI", "KC_LGUI")

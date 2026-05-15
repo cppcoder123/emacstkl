@@ -17,7 +17,9 @@
 
 enum custom_keycodes  {
   /**/
-  MACRO_BUFFER_0 = SAFE_RANGE,
+  MACRO_AVY_GOTO_CHAR_TIMER = SAFE_RANGE,
+  /**/
+  MACRO_BUFFER_0,
   MACRO_BUFFER_1,
   MACRO_BUFFER_2,
   MACRO_BUFFER_3,
@@ -91,6 +93,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     return true;
 
   switch (keycode) {
+  case MACRO_AVY_GOTO_CHAR_TIMER:
+    SEND_STRING (SS_LALT (SS_TAP (X_X)) "avy-goto-char-timer" SS_TAP (X_ENTER));
+    return false;
+    break;
   case MACRO_BUFFER_0:
     SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_TAP (X_0));
     return false;
