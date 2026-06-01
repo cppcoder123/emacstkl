@@ -66,80 +66,88 @@ BEGIN {
     # replace comma in braces with '|'
     #tmp = gensub (/(\([^ ,]+)[ ]*,[ ]*([^)]+\))/, "\\1|\\2", "g", src)
     # make an array
-    split (src, layer_0, "(,)|(, )|(,\n)")
+    split (src, layer_base, "(,)|(, )|(,\n)")
 
-    # create empty layer 1
-    for (i = 1; i <= length (layer_0); i++) {
-        layer_1[i] = "KC_NO";
-        # to debug l2 & l3 leds
-        layer_2[i] = "KC_NO";
-        layer_3[i] = "KC_NO";
+    # form home-row & extra layers
+    for (i = 1; i <= length (layer_base); i++) {
+        layer_home_row[i] = "KC_TRNS";
+        layer_extra[i] = "KC_NO";
     }
 
-    # fill layer 1
-    map(layer_0, layer_1, "KC_CAPS", "KC_NO")
-    map(layer_0, layer_2, "KC_LGUI", "KC_NO")
-    map(layer_0, layer_3, "KC_F20", "KC_NO")
+    # fill layer extra
+    ####map(layer_base, layer_home_row, "KC_CAPS", "KC_NO")
+    ####map(layer_base, layer_extra, "KC_LGUI", "KC_NO")
+    #map(layer_base, layer_3, "KC_F20", "KC_NO")
     #
-    map(layer_0, layer_1, "KC_SCRL", "QK_BOOT")
+    map(layer_base, layer_extra, "KC_SCRL", "QK_BOOT")
     #
-    map(layer_0, layer_1, "KC_1", "MACRO_BUFFER_1")
-    map(layer_0, layer_1, "KC_2", "MACRO_BUFFER_2")
-    map(layer_0, layer_1, "KC_3", "MACRO_BUFFER_3")
-    map(layer_0, layer_1, "KC_A", "MACRO_AVY_GOTO_CHAR_TIMER")
-    map(layer_0, layer_1, "KC_C", "MACRO_COMPILE")
-    map(layer_0, layer_1, "KC_DOWN", "MACRO_TMUX_FOCUS_DOWN")
-    map(layer_0, layer_1, "KC_E", "MACRO_NEXT_ERROR")
-    map(layer_0, layer_1, "KC_ESC", "MACRO_WIN_JUMP")
-    map(layer_0, layer_1, "KC_F1", "MACRO_WIN_1")
-    map(layer_0, layer_1, "KC_F2", "MACRO_WIN_2")
-    map(layer_0, layer_1, "KC_F3", "MACRO_WIN_3")
-    map(layer_0, layer_1, "KC_F4", "MACRO_WIN_4")
-    map(layer_0, layer_1, "KC_F9", "MACRO_CTL_ALT_DEL")
-    map(layer_0, layer_1, "KC_G", "MACRO_MAGIT")
-    map(layer_0, layer_1, "KC_GRV", "MACRO_BUFFER_0")
-    map(layer_0, layer_1, "KC_H", "MACRO_SHIFT_INSERT")
-    map(layer_0, layer_1, "KC_J", "MACRO_MAKE_J")
-    map(layer_0, layer_1, "KC_L", "MACRO_MAKE_CLEAN")
-    map(layer_0, layer_1, "KC_LEFT", "MACRO_TMUX_FOCUS_PREV")
-    map(layer_0, layer_1, "KC_M", "MACRO_MAKE")
-    map(layer_0, layer_1, "KC_N", "MACRO_TMUX_NEW")
-    map(layer_0, layer_1, "KC_O", "MACRO_FILE_OPEN")
-    map(layer_0, layer_1, "KC_P", "MACRO_TMUX_SPLIT_H")
-    map(layer_0, layer_1, "KC_R", "MACRO_COMPILE_AGAIN")
-    map(layer_0, layer_1, "KC_RIGHT", "MACRO_TMUX_FOCUS_NEXT")
-    map(layer_0, layer_1, "KC_S", "MACRO_FILE_SAVE")
-    map(layer_0, layer_1, "KC_UP", "MACRO_TMUX_FOCUS_UP")
-    map(layer_0, layer_1, "KC_W", "MACRO_BUFFER_SWITCH")
-
-    # fill layer_2
-    map(layer_0, layer_2, "KC_F9", "QK_MOUSE_CURSOR_LEFT")
-    map(layer_0, layer_2, "KC_F10", "QK_MOUSE_CURSOR_UP")
-    map(layer_0, layer_2, "KC_F11", "QK_MOUSE_CURSOR_DOWN")
-    map(layer_0, layer_2, "KC_F12", "QK_MOUSE_CURSOR_RIGHT")
-    map(layer_0, layer_2, "KC_INS", "QK_MOUSE_WHEEL_UP")
-    map(layer_0, layer_2, "KC_DEL", "QK_MOUSE_WHEEL_DOWN")
-    map(layer_0, layer_2, "KC_BSPC", "QK_MOUSE_BUTTON_1")
-    map(layer_0, layer_2, "KC_EQL", "QK_MOUSE_BUTTON_2")
-
-    # update layer 0
-    #map(layer_0, layer_0, "KC_CAPS", "LT(EMACSTKL_LAYER_1,KC_CAPS)")
-    map(layer_0, layer_0, "KC_CAPS", "OSL(EMACSTKL_LAYER_1)")
-    # debug l2/3 leds
-    map(layer_0, layer_0, "KC_LGUI", "MO(EMACSTKL_LAYER_2)")
-    map(layer_0, layer_0, "KC_F20", "OSL(EMACSTKL_LAYER_3)")
-    # rgui further then lgui, swap
-    map(layer_0, layer_0, "KC_RGUI", "KC_LGUI")
-    # original l-gui is a layer switcher
-    #map(layer_0, layer_0, "KC_LGUI", "KC_RGUI")
-
-    # write needed defines
-    define_layer("EMACSTKL_INFO_0", layer_0)
-    define_layer("EMACSTKL_INFO_1", layer_1)
-    define_layer("EMACSTKL_INFO_2", layer_2)
-    define_layer("EMACSTKL_INFO_3", layer_3)
+    map(layer_base, layer_extra, "KC_1", "MACRO_BUFFER_1")
+    map(layer_base, layer_extra, "KC_2", "MACRO_BUFFER_2")
+    map(layer_base, layer_extra, "KC_3", "MACRO_BUFFER_3")
+    map(layer_base, layer_extra, "KC_A", "MACRO_AVY_GOTO_CHAR_TIMER")
+    map(layer_base, layer_extra, "KC_C", "MACRO_COMPILE")
+    map(layer_base, layer_extra, "KC_DOWN", "MACRO_TMUX_FOCUS_DOWN")
+    map(layer_base, layer_extra, "KC_E", "MACRO_NEXT_ERROR")
+    map(layer_base, layer_extra, "KC_ESC", "MACRO_WIN_JUMP")
+    map(layer_base, layer_extra, "KC_F1", "MACRO_WIN_1")
+    map(layer_base, layer_extra, "KC_F2", "MACRO_WIN_2")
+    map(layer_base, layer_extra, "KC_F3", "MACRO_WIN_3")
+    map(layer_base, layer_extra, "KC_F4", "MACRO_WIN_4")
+    map(layer_base, layer_extra, "KC_F9", "MACRO_CTL_ALT_DEL")
+    map(layer_base, layer_extra, "KC_G", "MACRO_MAGIT")
+    map(layer_base, layer_extra, "KC_GRV", "MACRO_BUFFER_0")
+    map(layer_base, layer_extra, "KC_H", "MACRO_SHIFT_INSERT")
+    map(layer_base, layer_extra, "KC_J", "MACRO_MAKE_J")
+    map(layer_base, layer_extra, "KC_L", "MACRO_MAKE_CLEAN")
+    map(layer_base, layer_extra, "KC_LEFT", "MACRO_TMUX_FOCUS_PREV")
+    map(layer_base, layer_extra, "KC_M", "MACRO_MAKE")
+    map(layer_base, layer_extra, "KC_N", "MACRO_TMUX_NEW")
+    map(layer_base, layer_extra, "KC_O", "MACRO_FILE_OPEN")
+    map(layer_base, layer_extra, "KC_P", "MACRO_TMUX_SPLIT_H")
+    map(layer_base, layer_extra, "KC_R", "MACRO_COMPILE_AGAIN")
+    map(layer_base, layer_extra, "KC_RIGHT", "MACRO_TMUX_FOCUS_NEXT")
+    map(layer_base, layer_extra, "KC_S", "MACRO_FILE_SAVE")
+    map(layer_base, layer_extra, "KC_UP", "MACRO_TMUX_FOCUS_UP")
+    map(layer_base, layer_extra, "KC_W", "MACRO_BUFFER_SWITCH")
     #
-    print_map(layer_0, layer_1)
+    define_layer("EMACSTKL_INFO_EXTRA", layer_extra)
+    print_map(layer_base, layer_extra)
+
+    # fill layer_home_row
+    map(layer_base, layer_home_row, "KC_A", "MT(MOD_LGUI, KC_A)")
+    map(layer_base, layer_home_row, "KC_S", "MT(MOD_LSFT, KC_S)")
+    map(layer_base, layer_home_row, "KC_D", "MT(MOD_LALT, KC_D)")
+    map(layer_base, layer_home_row, "KC_F", "MT(MOD_LCTL, KC_F)")
+    map(layer_base, layer_home_row, "KC_J", "MT(MOD_RCTL, KC_J)")
+    map(layer_base, layer_home_row, "KC_K", "MT(MOD_RALT, KC_K)")
+    map(layer_base, layer_home_row, "KC_L", "MT(MOD_RSFT, KC_L)")
+    map(layer_base, layer_home_row, "KC_SCLN", "MT(MOD_LGUI, KC_SCLN)")
+    #
+    define_layer("EMACSTKL_INFO_HOME_ROW", layer_home_row)
+    print_map(layer_base, layer_home_row)
+
+    #
+    # define layer switch keys
+    #
+    # home-row -> extra
+    #
+    # home-row -> extra, momentarily
+    # KC_NO is already on the target layer
+    map(layer_base, layer_home_row, "KC_SPC", "LT(EMACSTKL_LAYER_EXTRA, KC_SPC)")
+    # home-row -> base, toggle
+    #map(layer_base, layer_base, "KC_F6", "KC_NO")
+    #map(layer_base, layer_home_row, "KC_F6", "TG(EMACSTKL_LAYER_BASE)")
+    #
+    # base -> home-row, toggle
+    map(layer_base, layer_home_row, "KC_F5", "KC_TRNS")
+    map(layer_base, layer_base, "KC_F5", "TG(EMACSTKL_LAYER_HOME_ROW)")
+    # base -> extra, momentarily
+    # KC_NO is already there
+    map(layer_base, layer_base, "KC_CAPS", "MO(EMACSTKL_LAYER_EXTRA)")
+    #
+
+    # define base layer here
+    define_layer("EMACSTKL_INFO_BASE", layer_base)
 
     exit
 }

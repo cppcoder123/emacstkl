@@ -69,22 +69,22 @@ enum custom_keycodes  {
 
 */
 
-#define EMACSTKL_LAYER_0 0
-#define EMACSTKL_LAYER_1 1
-#define EMACSTKL_LAYER_2 2
-#define EMACSTKL_LAYER_3 3
+#define EMACSTKL_LAYER_BASE 0
+#define EMACSTKL_LAYER_HOME_ROW 1
+#define EMACSTKL_LAYER_EXTRA 2
+/* #define EMACSTKL_LAYER_3 3 */
 /**/
 #define EMACSTKL_LAYER_1_LED C0
 #define EMACSTKL_LAYER_2_LED C1
-#define EMACSTKL_LAYER_3_LED B5
+/* #define EMACSTKL_LAYER_3_LED B5 */
 
 #include "keymap-info.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [EMACSTKL_LAYER_0] = EMACSTKL_INFO_0,
-  [EMACSTKL_LAYER_1] = EMACSTKL_INFO_1,
-  [EMACSTKL_LAYER_2] = EMACSTKL_INFO_2,
-  [EMACSTKL_LAYER_3] = EMACSTKL_INFO_3
+  [EMACSTKL_LAYER_BASE] = EMACSTKL_INFO_BASE,
+  [EMACSTKL_LAYER_HOME_ROW] = EMACSTKL_INFO_HOME_ROW,
+  [EMACSTKL_LAYER_EXTRA] = EMACSTKL_INFO_EXTRA/* , */
+  /* [EMACSTKL_LAYER_3] = EMACSTKL_INFO_3 */
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
@@ -214,25 +214,25 @@ void keyboard_pre_init_user ()
 {
   gpio_set_pin_output (EMACSTKL_LAYER_1_LED);
   gpio_set_pin_output (EMACSTKL_LAYER_2_LED);
-  gpio_set_pin_output (EMACSTKL_LAYER_3_LED);
+  /* gpio_set_pin_output (EMACSTKL_LAYER_3_LED); */
 }
 
 layer_state_t layer_state_set_user(layer_state_t state)
 {
-  if (IS_LAYER_ON_STATE (state, EMACSTKL_LAYER_1))
+  if (IS_LAYER_ON_STATE (state, EMACSTKL_LAYER_HOME_ROW))
     gpio_write_pin_high (EMACSTKL_LAYER_1_LED);
   else
     gpio_write_pin_low (EMACSTKL_LAYER_1_LED);
 
-  if (IS_LAYER_ON_STATE (state, EMACSTKL_LAYER_2))
+  if (IS_LAYER_ON_STATE (state, EMACSTKL_LAYER_EXTRA))
     gpio_write_pin_high (EMACSTKL_LAYER_2_LED);
   else
     gpio_write_pin_low (EMACSTKL_LAYER_2_LED);
 
-  if (IS_LAYER_ON_STATE (state, EMACSTKL_LAYER_3))
-    gpio_write_pin_high (EMACSTKL_LAYER_3_LED);
-  else
-    gpio_write_pin_low (EMACSTKL_LAYER_3_LED);
+  /* if (IS_LAYER_ON_STATE (state, EMACSTKL_LAYER_3)) */
+  /*   gpio_write_pin_high (EMACSTKL_LAYER_3_LED); */
+  /* else */
+  /*   gpio_write_pin_low (EMACSTKL_LAYER_3_LED); */
 
   return state;
 }
