@@ -41,15 +41,16 @@ enum custom_keycodes  {
   M_EMACS_WIN_JUMP,            /* focus to other window */
   /**/
   M_TMUX_CTL_ALT_DEL,		/* for M$ */
-  M_TMUX_MAKE,
-  M_TMUX_MAKE_CLEAN,
-  M_TMUX_MAKE_J,                /* parallel make*/
-  M_TMUX_SHIFT_INSERT,          /* for terminal */
   M_TMUX_FOCUS_DOWN,            /* */
   M_TMUX_FOCUS_NEXT,
   M_TMUX_FOCUS_PREV,
   M_TMUX_FOCUS_UP,
+  M_TMUX_MAKE,
+  M_TMUX_MAKE_CLEAN,
+  M_TMUX_MAKE_J,                /* parallel make*/
+  M_TMUX_NAME,
   M_TMUX_NEW,
+  M_TMUX_SHIFT_INSERT,          /* for terminal */
   M_TMUX_SPLIT_H,
 };
 
@@ -203,6 +204,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
   case M_TMUX_MAKE_J:
     SEND_STRING ("make -j ");
     return false;
+    break;
+  case M_TMUX_NAME:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_COMM));
     break;
   case M_TMUX_NEW:
     SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_C));

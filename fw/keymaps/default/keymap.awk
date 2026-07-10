@@ -79,6 +79,7 @@ BEGIN {
     map(layer_base, layer_tmux, "KC_SCRL", "QK_BOOT")
     #
     map(layer_base, layer_tmux, "KC_C", "M_TMUX_NEW")
+    map(layer_base, layer_tmux, "KC_COMM", "M_TMUX_NAME")
     map(layer_base, layer_tmux, "KC_DOWN", "M_TMUX_FOCUS_DOWN")
     map(layer_base, layer_tmux, "KC_F9", "M_TMUX_CTL_ALT_DEL")
     map(layer_base, layer_tmux, "KC_H", "M_TMUX_SHIFT_INSERT")
@@ -86,8 +87,8 @@ BEGIN {
     map(layer_base, layer_tmux, "KC_L", "M_TMUX_MAKE_CLEAN")
     map(layer_base, layer_tmux, "KC_LEFT", "M_TMUX_FOCUS_PREV")
     map(layer_base, layer_tmux, "KC_M", "M_TMUX_MAKE")
+    map(layer_base, layer_tmux, "KC_QUOT", "M_TMUX_SPLIT_H")
     map(layer_base, layer_tmux, "KC_RIGHT", "M_TMUX_FOCUS_NEXT")
-    map(layer_base, layer_tmux, "KC_S", "M_TMUX_SPLIT_H")
     map(layer_base, layer_tmux, "KC_UP", "M_TMUX_FOCUS_UP")
     #
     define_layer("EMACSTKL_INFO_TMUX", layer_tmux)
