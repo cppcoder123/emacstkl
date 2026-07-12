@@ -9,7 +9,8 @@
         "device_version": "0.0.1"
     },
     "matrix_pins": {
-        "cols": ["E6", "F0", "F1", "F4", "F5", "F6", "B4", "B1", "B2", "B3", "B7", "D0", "D1", "D2", "D3", "D5", "D4"],
+        "cols": ["E6", "F0", "F1", "F4", "F5", "F6", "D6",
+		 "B1", "B2", "B3", "B7", "D7", "B4", "D2", "D3", "D5", "D4"],
         "rows": ["B0", "F7", "B5", "B6", "C6", "C7"]
     },
     "diode_direction": "COL2ROW",
