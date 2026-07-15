@@ -66,80 +66,108 @@ BEGIN {
     # replace comma in braces with '|'
     #tmp = gensub (/(\([^ ,]+)[ ]*,[ ]*([^)]+\))/, "\\1|\\2", "g", src)
     # make an array
-    split (src, layer_0, "(,)|(, )|(,\n)")
+    split (src, layer_base, "(,)|(, )|(,\n)")
 
-    # create empty layer 1
-    for (i = 1; i <= length (layer_0); i++) {
-        layer_1[i] = "KC_NO";
-        # to debug l2 & l3 leds
-        layer_2[i] = "KC_NO";
-        layer_3[i] = "KC_NO";
+    # form home-row & extra layers
+    for (i = 1; i <= length (layer_base); i++) {
+        layer_home_row[i] = "KC_TRNS";
+        layer_tmux[i] = "KC_NO";
+        layer_emacs[i] = "KC_NO";
     }
 
-    # fill layer 1
-    map(layer_0, layer_1, "KC_CAPS", "KC_NO")
-    map(layer_0, layer_2, "KC_LGUI", "KC_NO")
-    map(layer_0, layer_3, "KC_F20", "KC_NO")
     #
-    map(layer_0, layer_1, "KC_SCRL", "QK_BOOT")
+    map(layer_base, layer_tmux, "KC_SCRL", "QK_BOOT")
     #
-    map(layer_0, layer_1, "KC_1", "MACRO_BUFFER_1")
-    map(layer_0, layer_1, "KC_2", "MACRO_BUFFER_2")
-    map(layer_0, layer_1, "KC_3", "MACRO_BUFFER_3")
-    map(layer_0, layer_1, "KC_A", "MACRO_AVY_GOTO_CHAR_TIMER")
-    map(layer_0, layer_1, "KC_C", "MACRO_COMPILE")
-    map(layer_0, layer_1, "KC_DOWN", "MACRO_TMUX_FOCUS_DOWN")
-    map(layer_0, layer_1, "KC_E", "MACRO_NEXT_ERROR")
-    map(layer_0, layer_1, "KC_ESC", "MACRO_WIN_JUMP")
-    map(layer_0, layer_1, "KC_F1", "MACRO_WIN_1")
-    map(layer_0, layer_1, "KC_F2", "MACRO_WIN_2")
-    map(layer_0, layer_1, "KC_F3", "MACRO_WIN_3")
-    map(layer_0, layer_1, "KC_F4", "MACRO_WIN_4")
-    map(layer_0, layer_1, "KC_F9", "MACRO_CTL_ALT_DEL")
-    map(layer_0, layer_1, "KC_G", "MACRO_MAGIT")
-    map(layer_0, layer_1, "KC_GRV", "MACRO_BUFFER_0")
-    map(layer_0, layer_1, "KC_H", "MACRO_SHIFT_INSERT")
-    map(layer_0, layer_1, "KC_J", "MACRO_MAKE_J")
-    map(layer_0, layer_1, "KC_L", "MACRO_MAKE_CLEAN")
-    map(layer_0, layer_1, "KC_LEFT", "MACRO_TMUX_FOCUS_PREV")
-    map(layer_0, layer_1, "KC_M", "MACRO_MAKE")
-    map(layer_0, layer_1, "KC_N", "MACRO_TMUX_NEW")
-    map(layer_0, layer_1, "KC_O", "MACRO_FILE_OPEN")
-    map(layer_0, layer_1, "KC_P", "MACRO_TMUX_SPLIT_H")
-    map(layer_0, layer_1, "KC_R", "MACRO_COMPILE_AGAIN")
-    map(layer_0, layer_1, "KC_RIGHT", "MACRO_TMUX_FOCUS_NEXT")
-    map(layer_0, layer_1, "KC_S", "MACRO_FILE_SAVE")
-    map(layer_0, layer_1, "KC_UP", "MACRO_TMUX_FOCUS_UP")
-    map(layer_0, layer_1, "KC_W", "MACRO_BUFFER_SWITCH")
-
-    # fill layer_2
-    map(layer_0, layer_2, "KC_F9", "QK_MOUSE_CURSOR_LEFT")
-    map(layer_0, layer_2, "KC_F10", "QK_MOUSE_CURSOR_UP")
-    map(layer_0, layer_2, "KC_F11", "QK_MOUSE_CURSOR_DOWN")
-    map(layer_0, layer_2, "KC_F12", "QK_MOUSE_CURSOR_RIGHT")
-    map(layer_0, layer_2, "KC_INS", "QK_MOUSE_WHEEL_UP")
-    map(layer_0, layer_2, "KC_DEL", "QK_MOUSE_WHEEL_DOWN")
-    map(layer_0, layer_2, "KC_BSPC", "QK_MOUSE_BUTTON_1")
-    map(layer_0, layer_2, "KC_EQL", "QK_MOUSE_BUTTON_2")
-
-    # update layer 0
-    #map(layer_0, layer_0, "KC_CAPS", "LT(EMACSTKL_LAYER_1,KC_CAPS)")
-    map(layer_0, layer_0, "KC_CAPS", "OSL(EMACSTKL_LAYER_1)")
-    # debug l2/3 leds
-    map(layer_0, layer_0, "KC_LGUI", "MO(EMACSTKL_LAYER_2)")
-    map(layer_0, layer_0, "KC_F20", "OSL(EMACSTKL_LAYER_3)")
-    # rgui further then lgui, swap
-    map(layer_0, layer_0, "KC_RGUI", "KC_LGUI")
-    # original l-gui is a layer switcher
-    #map(layer_0, layer_0, "KC_LGUI", "KC_RGUI")
-
-    # write needed defines
-    define_layer("EMACSTKL_INFO_0", layer_0)
-    define_layer("EMACSTKL_INFO_1", layer_1)
-    define_layer("EMACSTKL_INFO_2", layer_2)
-    define_layer("EMACSTKL_INFO_3", layer_3)
+    map(layer_base, layer_tmux, "KC_0", "M_TMUX_WIN_0")
+    map(layer_base, layer_tmux, "KC_1", "M_TMUX_WIN_1")
+    map(layer_base, layer_tmux, "KC_2", "M_TMUX_WIN_2")
+    map(layer_base, layer_tmux, "KC_3", "M_TMUX_WIN_3")
+    map(layer_base, layer_tmux, "KC_4", "M_TMUX_WIN_4")
+    map(layer_base, layer_tmux, "KC_5", "M_TMUX_WIN_5")
+    map(layer_base, layer_tmux, "KC_6", "M_TMUX_WIN_6")
+    map(layer_base, layer_tmux, "KC_7", "M_TMUX_WIN_7")
+    map(layer_base, layer_tmux, "KC_8", "M_TMUX_WIN_8")
+    map(layer_base, layer_tmux, "KC_9", "M_TMUX_WIN_9")
+    map(layer_base, layer_tmux, "KC_C", "M_TMUX_WIN_NEW")
+    map(layer_base, layer_tmux, "KC_COMM", "M_TMUX_WIN_NAME")
+    map(layer_base, layer_tmux, "KC_DOT", "M_TMUX_WIN_NUMBER")
+    map(layer_base, layer_tmux, "KC_DOWN", "M_TMUX_PANE_FOCUS_DOWN")
+    map(layer_base, layer_tmux, "KC_EQL", "M_TMUX_COPY_MODE")
+    map(layer_base, layer_tmux, "KC_F", "M_TMUX_WIN_FIND")
+    map(layer_base, layer_tmux, "KC_F9", "M_TMUX_CTL_ALT_DEL")
+    map(layer_base, layer_tmux, "KC_GRV", "M_TMUX_PANE_TO_WIN")
+    map(layer_base, layer_tmux, "KC_H", "M_TMUX_SHIFT_INSERT")
+    map(layer_base, layer_tmux, "KC_J", "M_TMUX_MAKE_J")
+    map(layer_base, layer_tmux, "KC_K", "M_TMUX_PANE_KILL")
+    map(layer_base, layer_tmux, "KC_L", "M_TMUX_MAKE_CLEAN")
+    map(layer_base, layer_tmux, "KC_LBRC", "M_TMUX_PANE_MOVE_LEFT")
+    map(layer_base, layer_tmux, "KC_LEFT", "M_TMUX_PANE_FOCUS_LEFT")
+    map(layer_base, layer_tmux, "KC_M", "M_TMUX_MAKE")
+    map(layer_base, layer_tmux, "KC_N", "M_TMUX_WIN_NEXT")
+    map(layer_base, layer_tmux, "KC_P", "M_TMUX_WIN_PREV")
+    map(layer_base, layer_tmux, "KC_QUOT", "M_TMUX_PANE_SPLIT_H")
+    map(layer_base, layer_tmux, "KC_RIGHT", "M_TMUX_PANE_FOCUS_RIGHT")
+    map(layer_base, layer_tmux, "KC_RBRC", "M_TMUX_PANE_MOVE_RIGHT")
+    map(layer_base, layer_tmux, "KC_S", "M_TMUX_WIN_SELECT")
+    map(layer_base, layer_tmux, "KC_SCLN", "M_TMUX_PANE_SPLIT_V")
+    map(layer_base, layer_tmux, "KC_UP", "M_TMUX_PANE_FOCUS_UP")
+    map(layer_base, layer_tmux, "KC_W", "M_TMUX_WIN_LIST")
     #
-    print_map(layer_0, layer_1)
+    define_layer("EMACSTKL_INFO_TMUX", layer_tmux)
+    print_map(layer_base, layer_tmux)
+    #
+    #
+    map(layer_base, layer_emacs, "KC_1", "M_EMACS_BUFFER_1")
+    map(layer_base, layer_emacs, "KC_2", "M_EMACS_BUFFER_2")
+    map(layer_base, layer_emacs, "KC_3", "M_EMACS_BUFFER_3")
+    map(layer_base, layer_emacs, "KC_A", "M_EMACS_AVY_GOTO_CHAR_TIMER")
+    map(layer_base, layer_emacs, "KC_C", "M_EMACS_COMPILE")
+    map(layer_base, layer_emacs, "KC_E", "M_EMACS_NEXT_ERROR")
+    map(layer_base, layer_emacs, "KC_ESC", "M_EMACS_WIN_JUMP")
+    map(layer_base, layer_emacs, "KC_F1", "M_EMACS_WIN_1")
+    map(layer_base, layer_emacs, "KC_F2", "M_EMACS_WIN_2")
+    map(layer_base, layer_emacs, "KC_F3", "M_EMACS_WIN_3")
+    map(layer_base, layer_emacs, "KC_F4", "M_EMACS_WIN_4")
+    map(layer_base, layer_emacs, "KC_G", "M_EMACS_DYNAMIC_EXPAND")
+    map(layer_base, layer_emacs, "KC_GRV", "M_EMACS_BUFFER_0")
+    map(layer_base, layer_emacs, "KC_H", "M_EMACS_HIPPIE_EXPAND")
+    map(layer_base, layer_emacs, "KC_M", "M_EMACS_MAGIT")
+    map(layer_base, layer_emacs, "KC_O", "M_EMACS_FILE_OPEN")
+    map(layer_base, layer_emacs, "KC_R", "M_EMACS_COMPILE_AGAIN")
+    map(layer_base, layer_emacs, "KC_S", "M_EMACS_FILE_SAVE")
+    map(layer_base, layer_emacs, "KC_W", "M_EMACS_BUFFER_SWITCH")
+    #
+    define_layer("EMACSTKL_INFO_EMACS", layer_emacs)
+    print_map(layer_base, layer_emacs)
+
+    # fill layer_home_row
+    #map(layer_base, layer_home_row, "KC_A", "MT(MOD_LGUI, KC_A)")
+    map(layer_base, layer_home_row, "KC_S", "MT(MOD_LSFT, KC_S)")
+    map(layer_base, layer_home_row, "KC_D", "MT(MOD_LALT, KC_D)")
+    map(layer_base, layer_home_row, "KC_F", "MT(MOD_LCTL, KC_F)")
+    map(layer_base, layer_home_row, "KC_J", "MT(MOD_RCTL, KC_J)")
+    map(layer_base, layer_home_row, "KC_K", "MT(MOD_RALT, KC_K)")
+    map(layer_base, layer_home_row, "KC_L", "MT(MOD_RSFT, KC_L)")
+    #map(layer_base, layer_home_row, "KC_SCLN", "MT(MOD_LGUI, KC_SCLN)")
+    #
+    # layer: home-row -> emacs
+    map(layer_base, layer_home_row, "KC_A", "LT(EMACSTKL_LAYER_EMACS, KC_A)")
+    map(layer_base, layer_home_row, "KC_SCLN", "LT(EMACSTKL_LAYER_EMACS, KC_SCLN)")
+    # layer: home-row -> tmux
+    # caps should work
+    #map(layer_base, layer_home_row, "KC_SPC", "LT(EMACSTKL_LAYER_TMUX)")
+    #
+    define_layer("EMACSTKL_INFO_HOME_ROW", layer_home_row)
+    print_map(layer_base, layer_home_row)
+
+    # Base layer modification, keep at min:
+    #
+    # base -> home-row, toggle
+    map(layer_base, layer_base, "KC_F5", "TG(EMACSTKL_LAYER_HOME_ROW)")
+    # base -> tmux, keep the button pressed
+    map(layer_base, layer_base, "KC_CAPS", "LT(EMACSTKL_LAYER_TMUX, KC_NO)")
+    #
+    define_layer("EMACSTKL_INFO_BASE", layer_base)
 
     exit
 }
