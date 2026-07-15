@@ -41,17 +41,39 @@ enum custom_keycodes  {
   M_EMACS_WIN_JUMP,            /* focus to other window */
   /**/
   M_TMUX_CTL_ALT_DEL,		/* for M$ */
-  M_TMUX_FOCUS_DOWN,            /* */
-  M_TMUX_FOCUS_NEXT,
-  M_TMUX_FOCUS_PREV,
-  M_TMUX_FOCUS_UP,
   M_TMUX_MAKE,
   M_TMUX_MAKE_CLEAN,
   M_TMUX_MAKE_J,                /* parallel make*/
-  M_TMUX_NAME,
-  M_TMUX_NEW,
+  M_TMUX_COPY_MODE,             /* */
+  M_TMUX_PANE_FOCUS_DOWN,       /* */
+  M_TMUX_PANE_FOCUS_LEFT,       /* */
+  M_TMUX_PANE_FOCUS_RIGHT,      /* */
+  M_TMUX_PANE_FOCUS_UP,
+  M_TMUX_PANE_KILL,
+  M_TMUX_PANE_MOVE_LEFT,
+  M_TMUX_PANE_MOVE_RIGHT,
+  M_TMUX_PANE_SPLIT_H,
+  M_TMUX_PANE_SPLIT_V,
+  M_TMUX_PANE_TO_WIN,
   M_TMUX_SHIFT_INSERT,          /* for terminal */
-  M_TMUX_SPLIT_H,
+  M_TMUX_WIN_0,                 /*select by number*/
+  M_TMUX_WIN_1,
+  M_TMUX_WIN_2,
+  M_TMUX_WIN_3,
+  M_TMUX_WIN_4,
+  M_TMUX_WIN_5,
+  M_TMUX_WIN_6,
+  M_TMUX_WIN_7,
+  M_TMUX_WIN_8,
+  M_TMUX_WIN_9,
+  M_TMUX_WIN_FIND,
+  M_TMUX_WIN_LIST,
+  M_TMUX_WIN_NAME,
+  M_TMUX_WIN_NEXT,
+  M_TMUX_WIN_NEW,
+  M_TMUX_WIN_NUMBER,            /* change window number */
+  M_TMUX_WIN_PREV,
+  M_TMUX_WIN_SELECT,            /* by name */
 };
 
 /*
@@ -173,24 +195,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     return false;
     break;
     /* */
+  case M_TMUX_COPY_MODE:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_LBRC));
+    return false;
+    break;
   case M_TMUX_CTL_ALT_DEL:
     SEND_STRING (SS_LCTL(SS_LALT(SS_TAP (X_DELETE))));
-    return false;
-    break;
-  case M_TMUX_FOCUS_DOWN:
-    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_DOWN));
-    return false;
-    break;
-  case M_TMUX_FOCUS_NEXT:
-    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_N));
-    return false;
-    break;
-  case M_TMUX_FOCUS_PREV:
-    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_P));
-    return false;
-    break;
-  case M_TMUX_FOCUS_UP:
-    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_UP));
     return false;
     break;
   case M_TMUX_MAKE:
@@ -205,19 +215,120 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     SEND_STRING ("make -j ");
     return false;
     break;
-  case M_TMUX_NAME:
-    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_COMM));
+  case M_TMUX_PANE_FOCUS_DOWN:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_DOWN));
+    return false;
     break;
-  case M_TMUX_NEW:
-    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_C));
+  case M_TMUX_PANE_FOCUS_LEFT:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_LEFT));
+    return false;
+    break;
+  case M_TMUX_PANE_FOCUS_RIGHT:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_RIGHT));
+    return false;
+    break;
+  case M_TMUX_PANE_FOCUS_UP:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_UP));
+    return false;
+    break;
+  case M_TMUX_PANE_KILL:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_X));
+    return false;
+    break;
+  case M_TMUX_PANE_MOVE_LEFT:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_LSFT (SS_TAP (X_LBRC)));
+    return false;
+    break;
+  case M_TMUX_PANE_MOVE_RIGHT:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_LSFT (SS_TAP (X_RBRC)));
+    return false;
+    break;
+  case M_TMUX_PANE_SPLIT_H:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_LSFT (SS_TAP (X_QUOT)));
+    return false;
+    break;
+  case M_TMUX_PANE_SPLIT_V:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_LSFT (SS_TAP (X_5)));
+    return false;
+    break;
+  case M_TMUX_PANE_TO_WIN:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_LSFT (SS_TAP (X_1)));
     return false;
     break;
   case M_TMUX_SHIFT_INSERT:
     SEND_STRING (SS_LSFT (SS_TAP (X_INS)));
     return false;
     break;
-  case M_TMUX_SPLIT_H:
-    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_LSFT (SS_TAP (X_QUOT)));
+  case M_TMUX_WIN_0:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_0));
+    return false;
+    break;
+  case M_TMUX_WIN_1:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_1));
+    return false;
+    break;
+  case M_TMUX_WIN_2:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_2));
+    return false;
+    break;
+  case M_TMUX_WIN_3:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_3));
+    return false;
+    break;
+  case M_TMUX_WIN_4:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_4));
+    return false;
+    break;
+  case M_TMUX_WIN_5:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_5));
+    return false;
+    break;
+  case M_TMUX_WIN_6:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_6));
+    return false;
+    break;
+  case M_TMUX_WIN_7:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_7));
+    return false;
+    break;
+  case M_TMUX_WIN_8:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_8));
+    return false;
+    break;
+  case M_TMUX_WIN_9:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_9));
+    return false;
+    break;
+  case M_TMUX_WIN_FIND:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_F));
+    return false;
+    break;
+  case M_TMUX_WIN_LIST:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_W));
+    return false;
+    break;
+  case M_TMUX_WIN_NAME:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_COMM));
+    return false;
+    break;
+  case M_TMUX_WIN_NEXT:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_N));
+    return false;
+    break;
+  case M_TMUX_WIN_NEW:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_C));
+    return false;
+    break;
+  case M_TMUX_WIN_NUMBER:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_DOT));
+    return false;
+    break;
+  case M_TMUX_WIN_PREV:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_P));
+    return false;
+    break;
+  case M_TMUX_WIN_SELECT:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_QUOT));
     return false;
     break;
   }
