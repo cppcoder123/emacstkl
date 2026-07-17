@@ -56,6 +56,7 @@ enum custom_keycodes  {
   M_TMUX_PANE_SPLIT_V,
   M_TMUX_PANE_TO_WIN,
   M_TMUX_SHIFT_INSERT,          /* for terminal */
+  M_TMUX_TIME,                  /* show the time */
   M_TMUX_WIN_0,                 /*select by number*/
   M_TMUX_WIN_1,
   M_TMUX_WIN_2,
@@ -257,6 +258,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     break;
   case M_TMUX_SHIFT_INSERT:
     SEND_STRING (SS_LSFT (SS_TAP (X_INS)));
+    return false;
+    break;
+  case M_TMUX_TIME:
+    SEND_STRING (SS_LCTL (SS_TAP (X_B)) SS_TAP (X_T));
     return false;
     break;
   case M_TMUX_WIN_0:

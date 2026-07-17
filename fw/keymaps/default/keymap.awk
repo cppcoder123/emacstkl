@@ -110,6 +110,7 @@ BEGIN {
     map(layer_base, layer_tmux, "KC_RBRC", "M_TMUX_PANE_MOVE_RIGHT")
     map(layer_base, layer_tmux, "KC_S", "M_TMUX_WIN_SELECT")
     map(layer_base, layer_tmux, "KC_SCLN", "M_TMUX_PANE_SPLIT_V")
+    map(layer_base, layer_tmux, "KC_T", "M_TMUX_TIME")
     map(layer_base, layer_tmux, "KC_UP", "M_TMUX_PANE_FOCUS_UP")
     map(layer_base, layer_tmux, "KC_W", "M_TMUX_WIN_LIST")
     #
