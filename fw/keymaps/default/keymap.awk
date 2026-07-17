@@ -1,20 +1,6 @@
-# C - left: Caps Lock, right/middle: Ctrl
 #
-# C-` C-x 0
-# C-1 C-x 1
-# C-2 C-x 2
-# C-3 C-x 3
-# C-c M-x "compile"
-# C-r M-x "recompile"
-# C-o C-x C-f
-# C-s C-x C-s
-# C-g M-x "magit"
-# C-m "make"       ; terminal
-# C-j "make -j "   ; terminal
-# C-l "make clean" ; terminal
-# C-e C-x `        ; next-error
-# C-h              ; shift-insert for terminal
-# ...
+# Map our action to keyboard layers
+#
 
 # add dst to arr-dst using index derived by src in ar_src search
 function map (ar_src, ar_dst, src, dst)
@@ -142,21 +128,17 @@ BEGIN {
     print_map(layer_base, layer_emacs)
 
     # fill layer_home_row
-    #map(layer_base, layer_home_row, "KC_A", "MT(MOD_LGUI, KC_A)")
-    map(layer_base, layer_home_row, "KC_S", "MT(MOD_LSFT, KC_S)")
+    map(layer_base, layer_home_row, "KC_A", "LT(EMACSTKL_LAYER_EMACS, KC_A)")
     map(layer_base, layer_home_row, "KC_D", "MT(MOD_LALT, KC_D)")
     map(layer_base, layer_home_row, "KC_F", "MT(MOD_LCTL, KC_F)")
     map(layer_base, layer_home_row, "KC_J", "MT(MOD_RCTL, KC_J)")
-    map(layer_base, layer_home_row, "KC_K", "MT(MOD_RALT, KC_K)")
+    map(layer_base, layer_home_row, "KC_K", "MT(MOD_LALT, KC_K)")
     map(layer_base, layer_home_row, "KC_L", "MT(MOD_RSFT, KC_L)")
-    #map(layer_base, layer_home_row, "KC_SCLN", "MT(MOD_LGUI, KC_SCLN)")
-    #
-    # layer: home-row -> emacs
-    map(layer_base, layer_home_row, "KC_A", "LT(EMACSTKL_LAYER_EMACS, KC_A)")
+    map(layer_base, layer_home_row, "KC_S", "MT(MOD_LSFT, KC_S)")
     map(layer_base, layer_home_row, "KC_SCLN", "LT(EMACSTKL_LAYER_EMACS, KC_SCLN)")
-    # layer: home-row -> tmux
-    # caps should work
-    #map(layer_base, layer_home_row, "KC_SPC", "LT(EMACSTKL_LAYER_TMUX)")
+    #
+    # switch to tmux layer should work from home-row since
+    # home-row default is KC_TRNS
     #
     define_layer("EMACSTKL_INFO_HOME_ROW", layer_home_row)
     print_map(layer_base, layer_home_row)
