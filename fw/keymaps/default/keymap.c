@@ -34,6 +34,9 @@ enum custom_keycodes  {
   M_EMACS_HIPPIE_EXPAND,
   M_EMACS_MAGIT,
   M_EMACS_NEXT_ERROR,
+  M_EMACS_VIEW_POP,
+  M_EMACS_VIEW_PUSH,
+  M_EMACS_VIEW_SWITCH,
   M_EMACS_WIN_1,               /* ace-window: change focus to win 1 */
   M_EMACS_WIN_2,               /* focus to win 2 */
   M_EMACS_WIN_3,               /* focus to win 3 */
@@ -173,6 +176,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     break;
   case M_EMACS_NEXT_ERROR:
     SEND_STRING (SS_LCTL (SS_TAP (X_X)) SS_TAP (X_GRV));
+    return false;
+    break;
+  case M_EMACS_VIEW_POP:
+    SEND_STRING (SS_LALT (SS_TAP (X_X)) "ivy-pop-view" SS_TAP (X_ENTER));
+    return false;
+    break;
+  case M_EMACS_VIEW_PUSH:
+    SEND_STRING (SS_LALT (SS_TAP (X_X)) "ivy-push-view" SS_TAP (X_ENTER));
+    return false;
+    break;
+  case M_EMACS_VIEW_SWITCH:
+    SEND_STRING (SS_LALT (SS_TAP (X_X)) "ivy-switch-view" SS_TAP (X_ENTER));
     return false;
     break;
   case M_EMACS_WIN_1:
