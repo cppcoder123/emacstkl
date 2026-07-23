@@ -383,4 +383,9 @@ layer_state_t layer_state_set_user(layer_state_t state)
   return state;
 }
 
+void keyboard_post_init_user ()
+{
+    layer_on (EMACSTKL_LAYER_HOME_ROW);
+}
+
 /*end of the file*/
