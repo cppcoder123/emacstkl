@@ -1,0 +1,306 @@
+(footprint "SW_CN_S_Cherry_MX_2.00u_PCB"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Cherry MX keyswitch, 2.00u, PCB mount, http://cherryamericas.com/wp-content/uploads/2014/12/mx_cat.pdf")
+	(tags "Cherry MX keyswitch 2.00u PCB")
+	(property "Reference" "REF**"
+		(at -2.54 -2.794 0)
+		(layer "F.SilkS")
+		(uuid "c2c89441-66f0-48c4-aabe-f4b7fbee0232")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SW_CN_S_Cherry_MX_2.00u_PCB"
+		(at -2.54 12.954 0)
+		(layer "F.Fab")
+		(uuid "c8620711-6bbb-40bf-92a7-83bd3633d759")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ea206bd0-7343-49a9-8859-185d67b3d8f5")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "eaf6f781-5f90-4726-94a6-aac19ea25fd7")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -9.525 -1.905)
+		(end 4.445 -1.905)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "d7b18a2c-7bd5-4405-86d7-39f88843bf7f")
+	)
+	(fp_line
+		(start -9.525 12.065)
+		(end -9.525 -1.905)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "9b86548d-ff20-4122-b552-8ca71ecc33ae")
+	)
+	(fp_line
+		(start 4.445 -1.905)
+		(end 4.445 12.065)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "b8c00a18-6fb3-4477-81a2-5f83080de357")
+	)
+	(fp_line
+		(start 4.445 12.065)
+		(end -9.525 12.065)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "add1d771-982c-4ec4-869b-8ed6552ad2c3")
+	)
+	(fp_line
+		(start -21.54 -4.425)
+		(end 16.46 -4.425)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "Dwgs.User")
+		(uuid "ff325364-47af-46ab-b553-c6abaa5c3113")
+	)
+	(fp_line
+		(start -21.54 14.59)
+		(end -21.54 -4.43)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "Dwgs.User")
+		(uuid "48b07f7c-03e3-44f3-b99e-b7a45d927ca3")
+	)
+	(fp_line
+		(start 16.46 -4.43)
+		(end 16.46 14.59)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "Dwgs.User")
+		(uuid "c602abf8-8655-41b8-b49c-f15f02857632")
+	)
+	(fp_line
+		(start 16.46 14.585)
+		(end -21.54 14.585)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "Dwgs.User")
+		(uuid "db37d9fa-6d89-443a-a518-87949e1e35bb")
+	)
+	(fp_line
+		(start -9.14 -1.52)
+		(end 4.06 -1.52)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "6a957f15-48be-46fb-96b2-2333c816c437")
+	)
+	(fp_line
+		(start -9.14 11.68)
+		(end -9.14 -1.52)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "4098d6b6-11ab-4b4c-9049-f5f3c9f272ad")
+	)
+	(fp_line
+		(start 4.06 -1.52)
+		(end 4.06 11.68)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "5233979f-e80f-4fc1-b887-5abf8caaa51c")
+	)
+	(fp_line
+		(start 4.06 11.68)
+		(end -9.14 11.68)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "2b31f3b4-c87a-4229-b9f1-195a1a35efa4")
+	)
+	(fp_line
+		(start -8.89 -1.27)
+		(end 3.81 -1.27)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "6cd94782-40bd-46f4-8c5e-491b9e15ef32")
+	)
+	(fp_line
+		(start -8.89 11.43)
+		(end -8.89 -1.27)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "fd0cc748-3c65-4177-a891-c34cf0c260d4")
+	)
+	(fp_line
+		(start 3.81 -1.27)
+		(end 3.81 11.43)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "01ff07fb-c9e8-47fd-b143-e6cf2ea01512")
+	)
+	(fp_line
+		(start 3.81 11.43)
+		(end -8.89 11.43)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "50f03205-c92b-4dd4-82ac-ce13bb72fc37")
+	)
+	(fp_text user "${REFERENCE}"
+		(at -2.54 -2.794 0)
+		(layer "F.Fab")
+		(uuid "f147068e-07e7-4808-9c9c-3b54d3f3f089")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "" np_thru_hole circle
+		(at -14.44 -1.92)
+		(size 3.05 3.05)
+		(drill 3.05)
+		(layers "*.Cu" "*.Mask")
+		(uuid "817fd18f-966b-4316-a895-109fd47677ab")
+	)
+	(pad "" np_thru_hole circle
+		(at -14.44 13.32)
+		(size 4 4)
+		(drill 4)
+		(layers "*.Cu" "*.Mask")
+		(uuid "dc678294-a97d-4d11-97ec-ba4163c2eef0")
+	)
+	(pad "" np_thru_hole circle
+		(at -7.62 5.08)
+		(size 1.7 1.7)
+		(drill 1.7)
+		(layers "*.Cu" "*.Mask")
+		(uuid "cbdb1c7b-2f9f-43cb-9881-e0f2498d14b1")
+	)
+	(pad "" np_thru_hole circle
+		(at -2.54 5.08)
+		(size 4 4)
+		(drill 4)
+		(layers "*.Cu" "*.Mask")
+		(uuid "623fedf5-7352-4bd4-b351-61001470bf37")
+	)
+	(pad "" np_thru_hole circle
+		(at 2.54 5.08)
+		(size 1.7 1.7)
+		(drill 1.7)
+		(layers "*.Cu" "*.Mask")
+		(uuid "49413ce8-8ace-4d00-8fa2-985e57eba517")
+	)
+	(pad "" np_thru_hole circle
+		(at 9.36 -1.92)
+		(size 3.05 3.05)
+		(drill 3.05)
+		(layers "*.Cu" "*.Mask")
+		(uuid "440a684f-57de-48a6-a6d8-d8afb4df51ed")
+	)
+	(pad "" np_thru_hole circle
+		(at 9.36 13.32)
+		(size 4 4)
+		(drill 4)
+		(layers "*.Cu" "*.Mask")
+		(uuid "7a53328d-2aac-41f4-8993-e68d49430c4b")
+	)
+	(pad "1" thru_hole circle
+		(at 0 0)
+		(size 2.2 2.2)
+		(drill 1.5)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "7e054007-7124-4a03-8515-22e792c418a4")
+	)
+	(pad "2" thru_hole circle
+		(at -6.35 2.54)
+		(size 2.2 2.2)
+		(drill 1.5)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "edb3c720-20bf-4a6a-a16a-ef66828c2ed6")
+	)
+	(embedded_fonts no)
+	(model "${KICAD10_3DMODEL_DIR}/Button_Switch_Keyboard.3dshapes/SW_Cherry_MX_2.00u_PCB.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

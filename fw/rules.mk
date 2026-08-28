@@ -13,4 +13,11 @@ NKRO_ENABLE = no            # Enable N-Key Rollover
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
 RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow
 AUDIO_ENABLE = no           # Audio output
-I2C_ENABLE = yes
+
+DEFERRED_EXEC_ENABLE = yes
+
+# Bootloader selection
+BOOTLOADER = caterina
+
+# drive leds
+I2C_DRIVER_REQUIRED = yes

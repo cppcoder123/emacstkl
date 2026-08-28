@@ -21,6 +21,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Locking resynchronize hack */
 #define LOCKING_RESYNC_ENABLE
 
+/* led chip */
+#define F_SCL 100000L
+
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.
